@@ -79,7 +79,8 @@ class Prompt(NormalNN):
         pass
 
     def cuda(self):
-        torch.cuda.set_device(self.config['gpuid'][0])
+        #print(str(self.config['gpuid'][0]))
+        #torch.cuda.set_device('cuda:' + str(self.config['gpuid'][0]))
         self.model = self.model.cuda()
         self.criterion_fn = self.criterion_fn.cuda()
 

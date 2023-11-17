@@ -297,7 +297,8 @@ class NormalNN(nn.Module):
         return self.count_parameter() + self.memory_size * dataset_size[0]*dataset_size[1]*dataset_size[2]
 
     def cuda(self):
-        torch.cuda.set_device(self.config['gpuid'][0])
+        #print(str(self.config['gpuid'][0]))
+        #torch.cuda.set_device('cuda:' + str(self.config['gpuid'][0]))
         self.model = self.model.cuda()
         self.criterion_fn = self.criterion_fn.cuda()
         # Multi-GPU
