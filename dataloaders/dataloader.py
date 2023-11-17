@@ -352,21 +352,29 @@ class iIMAGENET_R(iDataset):
         return "Split: {split}".format(**self.__dict__)
     
 class iIMAGENET_A(iIMAGENET_R):
-
+    
+    path = '../RanPAC/data/imageneta/imagenet-a'
 
     def load(self):
         # load splits from config file
         if self.train or self.validation:
-            dirpath = "../RanPAC/data/imageneta/imagenet-a/train"
+            dirpath = self.path + "/train"
         else:
-            dirpath = "../RanPAC/data/imageneta/imagenet-a/test"
+            dirpath =  self.path +"/test"
 
         ImageFolder = datasets.ImageFolder(dirpath)
 
         
         self.data = [s[0] for s in ImageFolder.samples]
         self.targets = ImageFolder.targets
+class omnibenchmark(iIMAGENET_A):
+    path = "../RanPAC/omnibenchmark/omnibenchmark"
 
+class cub(iIMAGENET_A):
+    path = "../RanPAC/data/cub/cub"
+
+class iVTAB(iIMAGENET_A):
+    path = '../RanPAC/data/vtab/vtab'
 
 class iDOMAIN_NET(iIMAGENET_R):
     base_folder = 'DomainNet'
