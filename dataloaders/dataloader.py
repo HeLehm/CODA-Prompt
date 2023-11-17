@@ -350,6 +350,23 @@ class iIMAGENET_R(iDataset):
 
     def extra_repr(self) -> str:
         return "Split: {split}".format(**self.__dict__)
+    
+class iIMAGENET_A(iIMAGENET_R):
+
+
+    def load(self):
+        # load splits from config file
+        if self.train or self.validation:
+            dirpath = "../RanPAC/data/imageneta/imagenet-a/train"
+        else:
+            dirpath = "../RanPAC/data/imageneta/imagenet-a/test"
+
+        ImageFolder = datasets.ImageFolder(dirpath)
+
+        
+        self.data = [s[0] for s in ImageFolder.samples]
+        self.targets = ImageFolder.targets
+
 
 class iDOMAIN_NET(iIMAGENET_R):
     base_folder = 'DomainNet'
